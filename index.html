@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Custom Event Calendar</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>📅 Custom Event Calendar</h1>
+
+  <div class="controls">
+    <button id="prevMonth">←</button>
+    <button id="nextMonth">→</button>
+    <span id="monthYear"></span>
+    <button id="toggleViewBtn">Switch to Weekly View</button>
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search events by title..."
+      title="Search events"
+    />
+  </div>
+
+  <div class="calendar" id="calendar"></div>
+
+  <!-- Event Modal -->
+  <div class="modal" id="eventModal">
+    <div class="modal-content">
+      <span id="closeModal" title="Close">&times;</span>
+      <h3 id="modalTitle">Add Event</h3>
+      <form id="eventForm">
+        <label>
+          Title:
+          <input type="text" id="eventTitle" required />
+        </label>
+        <label>
+          Date & Time:
+          <input type="datetime-local" id="eventDateTime" required />
+        </label>
+        <label>
+          Description:
+          <textarea id="eventDescription"></textarea>
+        </label>
+        <label>
+          Recurrence:
+          <select id="eventRecurrence" required>
+            <option value="none">None</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="custom">Custom</option>
+          </select>
+        </label>
+        <div id="customRecurrenceOptions" style="display:none; margin-top:5px;">
+          <label>
+            Repeat every
+            <input
+              type="number"
+              id="customRecurrenceInterval"
+              min="1"
+              value="1"
+              style="width: 50px"
+            />
+            <select id="customRecurrenceUnit">
+              <option value="days">days</option>
+              <option value="weeks">weeks</option>
+              <option value="months">months</option>
+            </select>
+          </label>
+        </div>
+        <label>
+          Color:
+          <input type="color" id="eventColor" value="#007BFF" />
+        </label>
+        <input type="hidden" id="editingEventId" />
+        <button type="submit">Save</button>
+        <button type="button" id="deleteEventBtn" style="background:#dc3545; margin-left:10px; display:none;">
+          Delete
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
